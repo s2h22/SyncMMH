@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+
+# Data (large/local files, downloaded separately -- see README)
+data/
+
+# Scripts (internal/reference pipeline scripts, not part of the public release)
+scripts/*
+!scripts/dataset_summary.py
