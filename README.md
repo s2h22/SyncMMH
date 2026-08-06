@@ -136,25 +136,25 @@ The line immediately below each identifier gives `start_frame/end_frame` (1-base
 
 Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_sample_multiview.py` — pose estimation and preprocessing use the same settings as `n1_pose_estimation.py`/`n2_pre_processing.py`, cameras are auto-synced by cross-correlating joint motion across views, and all 5 cameras are rendered side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
 
-**Push** — `push_c1-s25-gf-GH0XXXXX`
+**Push** — `push_c1-s25-gf`
 ![push multiview](visualization/push_multiview.gif)
 
-**Pull** — `pull_c1-s25-gc-GH0XXXXX`
+**Pull** — `pull_c1-s25-gc`
 ![pull multiview](visualization/pull_multiview.gif)
 
-**Sit** — `sit_c1-s25-na-GH0XXXXX`
+**Sit** — `sit_c1-s25-na`
 ![sit multiview](visualization/sit_multiview.gif)
 
-**Stand** — `stand_c1-s25-na-GH0XXXXX`
+**Stand** — `stand_c1-s25-na`
 ![stand multiview](visualization/stand_multiview.gif)
 
-**Walk** — `walk_c1-s25-gfrv-GH0XXXXX`
+**Walk** — `walk_c1-s25-gfrv`
 ![walk multiview](visualization/walk_multiview.gif)
 
-**Lift** — `lift_c1-s25-sr2laf-GH0XXXXX`
+**Lift** — `lift_c1-s25-sr2laf`
 ![lift multiview](visualization/lift_multiview.gif)
 
-**Carry** — `carry_c1-s25-lr2ldf-GH0XXXXX`
+**Carry** — `carry_c1-s25-lr2ldf`
 ![carry multiview](visualization/carry_multiview.gif)
 
 ---
