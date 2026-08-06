@@ -103,12 +103,6 @@ python dataset_summary.py
 
 # Visualize a motion capture trial (motion capture data not yet released)
 # python visualize_mocap.py <path_to.trc> <start_frame> <end_frame>
-
-# Visualize a pose estimation trial
-python visualize_pose.py <path_to_pose.txt> <start_frame> <end_frame>
-
-# Generate multiview visualizations (pose estimation + preprocessing + render) from data/sample videos/
-python pose_pipeline_sample_multiview.py
 ```
 
 ---
@@ -138,19 +132,30 @@ The line immediately below each identifier gives `start_frame/end_frame` (1-base
 
 ---
 
-## Visualization
+## Gallery
 
 Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_sample_multiview.py` — pose estimation and preprocessing use the same settings as `n1_pose_estimation.py`/`n2_pre_processing.py`, cameras are auto-synced by cross-correlating joint motion across views, and all 5 cameras are rendered side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
 
-| Activity | Example identifier | Video |
-|---|---|---|
-| Push | `push_c1-s25-gf-GH0XXXXX` | [`push_multiview.mp4`](visualization/push_multiview.mp4) |
-| Pull | `pull_c1-s25-gc-GH0XXXXX` | [`pull_multiview.mp4`](visualization/pull_multiview.mp4) |
-| Sit | `sit_c1-s25-na-GH0XXXXX` | [`sit_multiview.mp4`](visualization/sit_multiview.mp4) |
-| Stand | `stand_c1-s25-na-GH0XXXXX` | [`stand_multiview.mp4`](visualization/stand_multiview.mp4) |
-| Walk | `walk_c1-s25-gfrv-GH0XXXXX` | [`walk_multiview.mp4`](visualization/walk_multiview.mp4) |
-| Lift | `lift_c1-s25-sr2laf-GH0XXXXX` | [`lift_multiview.mp4`](visualization/lift_multiview.mp4) |
-| Carry | `carry_c1-s25-lr2ldf-GH0XXXXX` | [`carry_multiview.mp4`](visualization/carry_multiview.mp4) |
+**Push** — `push_c1-s25-gf-GH0XXXXX`
+![push multiview](visualization/push_multiview.gif)
+
+**Pull** — `pull_c1-s25-gc-GH0XXXXX`
+![pull multiview](visualization/pull_multiview.gif)
+
+**Sit** — `sit_c1-s25-na-GH0XXXXX`
+![sit multiview](visualization/sit_multiview.gif)
+
+**Stand** — `stand_c1-s25-na-GH0XXXXX`
+![stand multiview](visualization/stand_multiview.gif)
+
+**Walk** — `walk_c1-s25-gfrv-GH0XXXXX`
+![walk multiview](visualization/walk_multiview.gif)
+
+**Lift** — `lift_c1-s25-sr2laf-GH0XXXXX`
+![lift multiview](visualization/lift_multiview.gif)
+
+**Carry** — `carry_c1-s25-lr2ldf-GH0XXXXX`
+![carry multiview](visualization/carry_multiview.gif)
 
 ---
 
