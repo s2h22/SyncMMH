@@ -4,10 +4,7 @@
 
 - **35,299 trials** (~27.7 hours) from **24 participants** (12 M, 12 F)
 - **7 activities**: pushing, pulling, sitting, standing, walking, lifting, carrying
-- **2 modalities**: BlazePose 3D pose (22 keypoints, 5 views), metadata
-<!-- motion capture data isn't released yet -- re-enable once it's ready
 - **3 modalities**: 3D motion capture (ground truth), BlazePose 3D pose (22 keypoints, 5 views), metadata
--->
 
 > Paper: *SyncMMH: A Multimodal Dataset of Full-Body Motion in Manual Material Handling Tasks Integrating Motion Capture and Vision-Based Pose Estimation* — Jung & Xu (2026)
 
@@ -159,7 +156,6 @@ Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_s
 
 ## Modalities
 
-<!-- motion capture data isn't released yet -- re-enable once it's ready
 ### 1. Motion Capture (`.trc`)
 
 3D motion capture recordings in `.trc` format (304 GB total). Download from: *(link to be added)*
@@ -206,7 +202,6 @@ Five cameras were mounted on tripods at 1.4 m height, providing 360° coverage. 
 ![Lifting setup](figures/lifting_setup.png)
 
 See `scripts/visualize_mocap.py` for visualization.
--->
 
 ### 2. Vision-Based 3D Pose (`.txt`)
 
