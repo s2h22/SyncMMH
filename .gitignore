@@ -17,4 +17,3 @@ data/
 # Scripts (internal/reference pipeline scripts, not part of the public release)
 scripts/*
 !scripts/dataset_summary.py
-!scripts/mp4_to_gif.py
