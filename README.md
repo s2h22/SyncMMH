@@ -265,14 +265,14 @@ Twenty-two key body joints were extracted per frame using Google BlazePose. The 
 | 18 | L heel | 19 | R heel |
 | 20 | L index toe | 21 | R index toe |
 
-**World vs. normalized coordinates**
+**Normalized vs. World coordinates**
 
 BlazePose, via [MediaPipe's PoseLandmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/python), outputs two parallel sets of landmarks per frame, and this dataset keeps both as separate files:
 
 - **Normalized** (`pose_landmarks`; `*_normalized.txt`) — `x`/`y` are scaled to `[0, 1]` by image width/height, i.e. image-space, not metric. `z` is depth relative to the hip midpoint, on roughly the same scale as `x`.
 - **World** (`pose_world_landmarks`; `*_world.txt`) — `x`/`y`/`z` are real-world coordinates in **meters**, independent of image size or camera distance.
 
-Both use the same hip-midpoint origin and 22-keypoint topology above; only the units/scale differ.
+Both use the same hip-midpoint origin and 22-keypoint topology above; only the units/scale differ. See the MediaPipe PoseLandmarker link above for the full details on how each is computed.
 
 **How `raw_poses_3d_*.txt` is built** (`n1_pose_estimation.py`)
 
