@@ -12,7 +12,8 @@ __pycache__/
 .idea/
 
 # Data (large/local files, downloaded separately -- see README)
-data/
+data/*
+!data/metadata.txt
 
 # Scripts (internal/reference pipeline scripts, not part of the public release)
 scripts/*
