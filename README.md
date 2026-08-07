@@ -63,35 +63,6 @@ Multiview clips: all 5 camera views of the same trial, synchronized and arranged
 
 ---
 
-## Repository Structure
-
-```
-SyncMMH/
-├── data/
-│   └── metadata.txt             # trial identifiers and frame indices (559 KB)
-├── figures/
-│   ├── dataset_overview.png
-│   ├── experimental_layout.png
-│   ├── mocap_marker_placement.png
-│   ├── blazepose_keypoints.png
-│   ├── lifting_setup.png
-│   └── task_overview.png
-├── scripts/
-│   └── dataset_summary.py       # trial/frame counts by activity, camera, subject
-├── visualization/                # generated multiview clips (see Gallery section)
-│   ├── push_multiview.gif
-│   ├── pull_multiview.gif
-│   ├── sit_multiview.gif
-│   ├── stand_multiview.gif
-│   ├── walk_multiview.gif
-│   ├── lift_multiview.gif
-│   └── carry_multiview.gif
-├── LICENSE                      # CC BY 4.0
-└── README.md
-```
-
----
-
 ## Data Download
 
 The large data files are hosted externally. See the [Modalities](#modalities) section below for download links and the folder structure to use after downloading.
