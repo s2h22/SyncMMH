@@ -24,10 +24,9 @@ SyncMMH/
 │   ├── lifting_setup.png
 │   └── task_overview.png
 ├── scripts/
-│   ├── dataset_summary.py                 # trial/frame counts by activity, camera, subject
-│   ├── visualize_mocap.py                 # 3D animated skeleton from motion capture
-│   ├── visualize_pose.py                  # 2D multiview skeleton from pre-processed BlazePose keypoints
-│   └── pose_pipeline_sample_multiview.py  # pose estimation + preprocessing + multiview render for data/sample videos/
+│   ├── dataset_summary.py       # trial/frame counts by activity, camera, subject
+│   ├── visualize_mocap.py       # 3D animated skeleton from motion capture
+│   └── visualize_pose.py        # 2D multiview skeleton from pre-processed BlazePose keypoints
 ├── visualization/                # generated multiview clips (see Visualization section)
 ├── examples/                    # Jupyter notebooks (coming soon)
 ├── LICENSE                      # CC BY 4.0
