@@ -21,3 +21,6 @@ scripts/*
 
 # Full-quality multiview mp4s (GIFs in visualization/ are the tracked previews)
 visualization/*.mp4
+
+# Paper draft (not part of the public code/data release)
+*.pdf

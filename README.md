@@ -265,6 +265,23 @@ Twenty-two key body joints were extracted per frame using Google BlazePose. The 
 | 18 | L heel | 19 | R heel |
 | 20 | L index toe | 21 | R index toe |
 
+**World vs. normalized coordinates**
+
+BlazePose, via [MediaPipe's PoseLandmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/python), outputs two parallel sets of landmarks per frame, and this dataset keeps both as separate files:
+
+- **Normalized** (`pose_landmarks`; `*_normalized.txt`) — `x`/`y` are scaled to `[0, 1]` by image width/height, i.e. image-space, not metric. `z` is depth relative to the hip midpoint, on roughly the same scale as `x`.
+- **World** (`pose_world_landmarks`; `*_world.txt`) — `x`/`y`/`z` are real-world coordinates in **meters**, independent of image size or camera distance.
+
+Both use the same hip-midpoint origin and 22-keypoint topology above; only the units/scale differ.
+
+**How `raw_poses_3d_*.txt` is built** (`n1_pose_estimation.py`)
+
+For each repetition annotated in `metadata.txt`, a fresh `PoseLandmarker` session runs frame-by-frame from the repetition's start to end frame. The trial identifier line (`camera-subject-tag-filename.MP4;class_label`) is written once at the start frame, followed by one `frame_idx;x,y,z,x,y,z,...` line (22 keypoints × 3, `landmarks[11:]` — BlazePose's first 11 landmarks are facial points and are dropped) for every frame where detection fully succeeded (all 33 landmarks found). A blank line closes the repetition at its end frame. Detection isn't guaranteed for every frame in range; frames where it fails are skipped rather than filled in, so a repetition's tracked-frame count can be lower than its annotated frame range, and can end up fragmented around dropout gaps.
+
+**How `pre_processed_poses_3d_*.txt` is built** (`n2_pre_processing.py`)
+
+The preprocessor doesn't treat one annotated repetition as one contiguous block. It scans the raw file and, whenever the frame index doesn't advance by exactly +1 from the previous line — i.e. a detection gap, however small — it closes out the current run, and, only if that run has **≥19 frames** (the minimum `scipy.signal.filtfilt` needs for this filter's default padding), applies a zero-phase 5th-order Butterworth low-pass filter (cutoff 3 Hz, sampling rate 59.94 Hz) and writes it; shorter runs are dropped entirely. It then **re-writes the same trial identifier line** before starting a new run with the next frame. So one repetition in `metadata.txt` can correspond to several identifier-tagged chunks in the preprocessed file rather than a single one.
+
 See `scripts/visualize_pose.py` for visualization.
 
 ### 4. Metadata (`data/metadata.txt`)
