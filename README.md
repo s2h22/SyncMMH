@@ -8,6 +8,34 @@
 
 ![Dataset overview](figures/dataset_overview.png)
 
+Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants):
+
+**Totals:** 35,299 trials · 5,965,230 frames · 1,663.84 minutes (~27.7 hours)
+
+**By activity**
+
+| Activity | Trials | Frames | Duration (min) |
+|---|---:|---:|---:|
+| Push | 923 (2.61%) | 309,749 (5.19%) | 86.65 (5.21%) |
+| Pull | 899 (2.55%) | 386,376 (6.48%) | 108.16 (6.50%) |
+| Sit | 424 (1.20%) | 378,817 (6.35%) | 106.17 (6.38%) |
+| Stand | 420 (1.19%) | 377,558 (6.33%) | 105.82 (6.36%) |
+| Walk | 2,950 (8.36%) | 753,706 (12.63%) | 210.65 (12.66%) |
+| Lift | 27,632 (78.28%) | 3,297,700 (55.28%) | 917.53 (55.15%) |
+| Carry | 2,051 (5.81%) | 461,324 (7.73%) | 128.86 (7.74%) |
+
+**By camera**
+
+| Camera | Trials | Frames | Duration (min) |
+|---|---:|---:|---:|
+| c1 | 7,499 (21.24%) | 1,249,279 (20.94%) | 348.42 (20.94%) |
+| c2 | 7,196 (20.39%) | 1,233,744 (20.68%) | 344.15 (20.68%) |
+| c3 | 7,331 (20.77%) | 1,252,018 (20.99%) | 349.24 (20.99%) |
+| c4 | 6,249 (17.70%) | 1,093,355 (18.33%) | 305.02 (18.33%) |
+| c5 | 7,024 (19.90%) | 1,136,834 (19.06%) | 317.01 (19.05%) |
+
+Lifting dominates the trial count because each lift/carry repetition (a single pick-up-and-place motion) is logged as its own trial, while push/pull/sit/stand/walk trials span a longer continuous action.
+
 ---
 
 ## Repository Structure
@@ -57,38 +85,6 @@ Five GoPro Hero8 Black cameras (1920×1080, 60 Hz, 122.6° horizontal / 94.4° v
 Seven tasks were recorded across five sessions (with a 10-min break between sessions): pushing and pulling a cart, sitting and standing, walking, lifting, and carrying.
 
 ![Task overview](figures/task_overview.png)
-
----
-
-## Dataset Summary
-
-Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants):
-
-**Totals:** 35,299 trials · 5,965,230 frames · 1,663.84 minutes (~27.7 hours)
-
-**By activity**
-
-| Activity | Trials | Frames | Duration (min) |
-|---|---:|---:|---:|
-| Push | 923 (2.61%) | 309,749 (5.19%) | 86.65 (5.21%) |
-| Pull | 899 (2.55%) | 386,376 (6.48%) | 108.16 (6.50%) |
-| Sit | 424 (1.20%) | 378,817 (6.35%) | 106.17 (6.38%) |
-| Stand | 420 (1.19%) | 377,558 (6.33%) | 105.82 (6.36%) |
-| Walk | 2,950 (8.36%) | 753,706 (12.63%) | 210.65 (12.66%) |
-| Lift | 27,632 (78.28%) | 3,297,700 (55.28%) | 917.53 (55.15%) |
-| Carry | 2,051 (5.81%) | 461,324 (7.73%) | 128.86 (7.74%) |
-
-**By camera**
-
-| Camera | Trials | Frames | Duration (min) |
-|---|---:|---:|---:|
-| c1 | 7,499 (21.24%) | 1,249,279 (20.94%) | 348.42 (20.94%) |
-| c2 | 7,196 (20.39%) | 1,233,744 (20.68%) | 344.15 (20.68%) |
-| c3 | 7,331 (20.77%) | 1,252,018 (20.99%) | 349.24 (20.99%) |
-| c4 | 6,249 (17.70%) | 1,093,355 (18.33%) | 305.02 (18.33%) |
-| c5 | 7,024 (19.90%) | 1,136,834 (19.06%) | 317.01 (19.05%) |
-
-Lifting dominates the trial count because each lift/carry repetition (a single pick-up-and-place motion) is logged as its own trial, while push/pull/sit/stand/walk trials span a longer continuous action.
 
 ---
 
