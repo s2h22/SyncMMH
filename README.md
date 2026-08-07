@@ -36,6 +36,33 @@ Lifting dominates the trial count because each lift/carry repetition (a single p
 
 ---
 
+## Gallery
+
+Multiview clips: all 5 camera views of the same repetition, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
+
+**Push** — `s25-gf`
+![push multiview](visualization/push_multiview.gif)
+
+**Pull** — `s25-gc`
+![pull multiview](visualization/pull_multiview.gif)
+
+**Sit** — `s25-na`
+![sit multiview](visualization/sit_multiview.gif)
+
+**Stand** — `s25-na`
+![stand multiview](visualization/stand_multiview.gif)
+
+**Walk** — `s25-gfrv`
+![walk multiview](visualization/walk_multiview.gif)
+
+**Lift** — `s25-sr2laf`
+![lift multiview](visualization/lift_multiview.gif)
+
+**Carry** — `s25-lr2ldf`
+![carry multiview](visualization/carry_multiview.gif)
+
+---
+
 ## Repository Structure
 
 ```
@@ -50,9 +77,7 @@ SyncMMH/
 │   ├── lifting_setup.png
 │   └── task_overview.png
 ├── scripts/
-│   ├── dataset_summary.py       # trial/frame counts by activity, camera, subject
-│   ├── visualize_mocap.py       # 3D animated skeleton from motion capture
-│   └── visualize_pose.py        # 2D multiview skeleton from pre-processed BlazePose keypoints
+│   └── dataset_summary.py       # trial/frame counts by activity, camera, subject
 ├── visualization/                # generated multiview clips (see Gallery section)
 │   ├── push_multiview.gif
 │   ├── pull_multiview.gif
@@ -97,9 +122,6 @@ Seven tasks were recorded across five sessions (with a 10-min break between sess
 # Dataset summary — trial/frame counts by activity, camera, and subject
 cd scripts
 python dataset_summary.py
-
-# Visualize a motion capture trial (motion capture data available upon request, not a direct download)
-# python visualize_mocap.py <path_to.trc> <start_frame> <end_frame>
 ```
 
 ---
@@ -131,33 +153,6 @@ The activity and experimental conditions for each trial are encoded into a **tri
 | Lift / Carry | `[size][direction][location][state]` | `size`: `s` (small), `m` (medium), `l` (large). `direction`: `r2l` (right-to-left) or `l2r` (left-to-right). `location`: `a` (adjacent shelves) or `d` (distant shelves). `state`: `f` (fixed cameras) or `m` (moving cameras) |
 
 Immediately below each trial identifier, one or more `start_frame/end_frame` lines (1-based) mark the trial's extent. Lifting and carrying trials involve multiple repetitions per recording, so their identifiers are followed by multiple frame-index lines; every other activity is a single trial with just one line.
-
----
-
-## Gallery
-
-Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_sample_multiview.py` — pose estimation and preprocessing use the same settings as `n1_pose_estimation.py`/`n2_pre_processing.py`, cameras are auto-synced by cross-correlating joint motion across views, and all 5 cameras are rendered side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
-
-**Push** — `s25-gf`
-![push multiview](visualization/push_multiview.gif)
-
-**Pull** — `s25-gc`
-![pull multiview](visualization/pull_multiview.gif)
-
-**Sit** — `s25-na`
-![sit multiview](visualization/sit_multiview.gif)
-
-**Stand** — `s25-na`
-![stand multiview](visualization/stand_multiview.gif)
-
-**Walk** — `s25-gfrv`
-![walk multiview](visualization/walk_multiview.gif)
-
-**Lift** — `s25-sr2laf`
-![lift multiview](visualization/lift_multiview.gif)
-
-**Carry** — `s25-lr2ldf`
-![carry multiview](visualization/carry_multiview.gif)
 
 ---
 
@@ -209,8 +204,6 @@ Thirty-seven reflective markers were attached to anatomical landmarks following 
 Motion capture was recorded simultaneously with video at 60 Hz. For lifting tasks (Session 4), participants lifted three box sizes between two adjacent five-level shelves (small/medium) or four-level shelves (large).
 
 ![Lifting setup](figures/lifting_setup.png)
-
-See `scripts/visualize_mocap.py` for visualization.
 
 ### 2. Vision-Based 3D Pose (`.txt`)
 
@@ -264,16 +257,6 @@ BlazePose, via [MediaPipe's PoseLandmarker](https://developers.google.com/edge/m
 - **World** (`pose_world_landmarks`; `*_world.txt`) — `x`/`y`/`z` are real-world coordinates in **meters**, independent of image size or camera distance.
 
 Both use the same hip-midpoint origin and 22-keypoint topology above; only the units/scale differ. See the MediaPipe PoseLandmarker link above for the full details on how each is computed.
-
-**How `raw_poses_3d_*.txt` is built**
-
-For each repetition annotated in `metadata.txt`, a fresh `PoseLandmarker` session runs frame-by-frame from the repetition's start to end frame. The trial identifier line (`camera-subject-tag-filename.MP4;class_label`) is written once at the start frame, followed by one `frame_idx;x,y,z,x,y,z,...` line (22 keypoints × 3, `landmarks[11:]` — BlazePose's first 11 landmarks are facial points and are dropped) for every frame where detection fully succeeded (all 33 landmarks found). A blank line closes the repetition at its end frame. Detection isn't guaranteed for every frame in range; frames where it fails are skipped rather than filled in, so a repetition's tracked-frame count can be lower than its annotated frame range, and can end up fragmented around dropout gaps.
-
-**How `pre_processed_poses_3d_*.txt` is built**
-
-The preprocessor doesn't treat one annotated repetition as one contiguous block. It scans the raw file and, whenever the frame index doesn't advance by exactly +1 from the previous line — i.e. a detection gap, however small — it closes out the current run, and, only if that run has **≥19 frames** (the minimum `scipy.signal.filtfilt` needs for this filter's default padding), applies a zero-phase 5th-order Butterworth low-pass filter (cutoff 3 Hz, sampling rate 59.94 Hz) and writes it; shorter runs are dropped entirely. It then **re-writes the same trial identifier line** before starting a new run with the next frame. So one repetition in `metadata.txt` can correspond to several identifier-tagged chunks in the preprocessed file rather than a single one.
-
-See `scripts/visualize_pose.py` for visualization.
 
 ### 3. Metadata (`data/metadata.txt`)
 - Trial identifiers encoding activity, camera, subject, and task parameters
