@@ -98,7 +98,7 @@ Seven tasks were recorded across five sessions (with a 10-min break between sess
 cd scripts
 python dataset_summary.py
 
-# Visualize a motion capture trial (motion capture data not yet released)
+# Visualize a motion capture trial (motion capture data available upon request, not a direct download)
 # python visualize_mocap.py <path_to.trc> <start_frame> <end_frame>
 ```
 
