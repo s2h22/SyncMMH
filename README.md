@@ -8,9 +8,7 @@
 
 ![Dataset overview](figures/dataset_overview.png)
 
-Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants):
-
-**Totals:** 35,299 trials · 5,965,230 frames · 1,663.84 minutes (~27.7 hours)
+Breakdown below generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants); **5,965,230 frames** total.
 
 **By activity**
 
