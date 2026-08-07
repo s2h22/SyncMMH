@@ -73,7 +73,7 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 
 | Component | Size | Format | Host |
 |---|---|---|---|
-| Motion capture | 304 GB | `.trc` | Available upon request — contact [apps.ehee@gmail.com](mailto:apps.ehee@gmail.com) |
+| Motion capture | 304 GB | `.trc` | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) |
 | Pose (all cameras) | 3.62 GB | `.txt` | *(link to be added)* |
 | Metadata | 559 KB | `.txt` | Included in this repo |
 
@@ -176,7 +176,7 @@ This is the raw footage `scripts/pose_pipeline_sample_multiview.py` runs pose es
 
 ### 2. Motion Capture (`.trc`)
 
-3D motion capture recordings in `.trc` format (304 GB total). Available upon request — contact [apps.ehee@gmail.com](mailto:apps.ehee@gmail.com).
+3D motion capture recordings in `.trc` format (304 GB total). Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)).
 
 After downloading, create a `data/motion_capture/` folder and place files so the structure looks like:
 
