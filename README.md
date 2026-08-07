@@ -4,7 +4,7 @@
 
 - **35,299 trials** (~27.7 hours) from **24 participants** (12 M, 12 F)
 - **7 activities**: pushing, pulling, sitting, standing, walking, lifting, carrying
-- **3 modalities**: 3D motion capture (ground truth), BlazePose 3D pose (22 keypoints, 5 views), metadata
+- **4 modalities**: 360° multi-view video (5-camera setup), 3D motion capture (ground truth), vision-based 3D pose (BlazePose, 22 keypoints), metadata
 
 ![Dataset overview](figures/dataset_overview.png)
 
@@ -42,6 +42,7 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 
 | Component | Size | Format | Host |
 |---|---|---|---|
+| Original videos (5-camera) | 1.24 TB | `.mp4` | *(link to be added)* |
 | Motion capture | 304 GB | `.trc` | *(link to be added)* |
 | Pose (all cameras) | 3.62 GB | `.txt` | *(link to be added)* |
 | Metadata | 559 KB | `.txt` | Included in this repo |
@@ -50,11 +51,11 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 
 ## Experimental Setup
 
-Five GoPro cameras and 14 infrared motion capture cameras were set up to provide 360° coverage of the participant performing MMH tasks.
+Five GoPro Hero8 Black cameras (1920×1080, 60 Hz, 122.6° horizontal / 94.4° vertical FOV) and a 14-camera infrared motion capture system (Cortex v7.02.1815, Motion Analysis Corp.) were mounted on tripods at 1.4 m height to provide 360° coverage — front, back, diagonal, and side views — of the participant performing MMH tasks.
 
 ![Experimental layout](figures/experimental_layout.png)
 
-Seven tasks were recorded across five sessions: pushing, pulling, sitting, standing, walking, lifting, and carrying.
+Seven tasks were recorded across five sessions (with a 10-min break between sessions): pushing and pulling a cart, sitting and standing, walking, lifting, and carrying.
 
 ![Task overview](figures/task_overview.png)
 
@@ -62,7 +63,7 @@ Seven tasks were recorded across five sessions: pushing, pulling, sitting, stand
 
 ## Dataset Summary
 
-Generated with `scripts/dataset_summary.py` (excludes subject `s1`, a pilot session not included in the released trials):
+Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants):
 
 **Totals:** 35,299 trials · 5,965,230 frames · 1,663.84 minutes (~27.7 hours)
 
@@ -107,26 +108,31 @@ python dataset_summary.py
 
 ## File Naming Convention
 
-All trials in `data/metadata.txt` follow this identifier format:
+The activity and experimental conditions for each trial are encoded into a **trial identifier** in `data/metadata.txt`, following this format:
 
 ```
-[activity]_[camera]-[subject]-[task_params]-[filename]
+[activity]_[camera]-[subject]-[task parameters]-[filename]
 ```
 
-**Example:** `lift_c1-s1-sr2laf-GH010014`
+**Example:** `lift_c1-s1-sr2laf-GH010014` — a lifting trial using a small box, moved right-to-left, at an adjacent shelf location, recorded by fixed cameras.
 
 | Field | Values |
 |---|---|
 | `activity` | `push`, `pull`, `sit`, `stand`, `walk`, `lift`, `carry` |
 | `camera` | `c1`–`c5` |
 | `subject` | `s1`–`s25` |
-| `task_params` (push/pull) | `gc` (getting close), `gf` (getting far) |
-| `task_params` (sit/stand) | `na` |
-| `task_params` (walk) | `gc`/`gf` + `cv` (close-up) / `rv` (regular) |
-| `task_params` (lift/carry) | `[size][direction][location][cam]` — e.g., `sr2laf` = small, right-to-left, adjacent shelf, fixed camera |
 | `filename` | GoPro video filename (e.g., `GH010014`) |
 
-The line immediately below each identifier gives `start_frame/end_frame` (1-based). Lifting and carrying trials may have multiple frame-index lines per identifier.
+**`task parameters`** — the tag's structure depends on the activity:
+
+| Activity | Tag structure | Values |
+|---|---|---|
+| Push / Pull | `[relation]` | `gc` (getting close) or `gf` (getting far) — spatial relationship of the participant to Camera 3, positioned in front of the path |
+| Sit / Stand | `na` | No task parameters apply; the tag is fixed as non-applicable |
+| Walk | `[relation][view]` | `relation`: `gc`/`gf` as above. `view`: `cv` (close-up view, cameras repositioned 2 m from the path center for the second half of the walking trials) or `rv` (regular view, default camera positions) |
+| Lift / Carry | `[size][direction][location][state]` | `size`: `s` (small), `m` (medium), `l` (large). `direction`: `r2l` (right-to-left) or `l2r` (left-to-right). `location`: `a` (adjacent shelves) or `d` (distant shelves). `state`: `f` (fixed cameras) or `m` (moving cameras) |
+
+Immediately below each trial identifier, one or more `start_frame/end_frame` lines (1-based) mark the trial's extent. Lifting and carrying trials involve multiple repetitions per recording, so their identifiers are followed by multiple frame-index lines; every other activity is a single trial with just one line.
 
 ---
 
@@ -134,32 +140,43 @@ The line immediately below each identifier gives `start_frame/end_frame` (1-base
 
 Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_sample_multiview.py` — pose estimation and preprocessing use the same settings as `n1_pose_estimation.py`/`n2_pre_processing.py`, cameras are auto-synced by cross-correlating joint motion across views, and all 5 cameras are rendered side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
 
-**Push** — `c1-s25-gf`
+**Push** — `s25-gf`
 ![push multiview](visualization/push_multiview.gif)
 
-**Pull** — `c1-s25-gc`
+**Pull** — `s25-gc`
 ![pull multiview](visualization/pull_multiview.gif)
 
-**Sit** — `c1-s25-na`
+**Sit** — `s25-na`
 ![sit multiview](visualization/sit_multiview.gif)
 
-**Stand** — `c1-s25-na`
+**Stand** — `s25-na`
 ![stand multiview](visualization/stand_multiview.gif)
 
-**Walk** — `c1-s25-gfrv`
+**Walk** — `s25-gfrv`
 ![walk multiview](visualization/walk_multiview.gif)
 
-**Lift** — `c1-s25-sr2laf`
+**Lift** — `s25-sr2laf`
 ![lift multiview](visualization/lift_multiview.gif)
 
-**Carry** — `c1-s25-lr2ldf`
+**Carry** — `s25-lr2ldf`
 ![carry multiview](visualization/carry_multiview.gif)
 
 ---
 
 ## Modalities
 
-### 1. Motion Capture (`.trc`)
+### 1. Multi-View Video (`.mp4`)
+
+Original 360°-coverage video in `.mp4` format (1.24 TB total). Download from: *(link to be added)*
+
+- **Cameras**: 5 × GoPro Hero8 Black, 1920×1080, 60 Hz, 122.6° horizontal / 94.4° vertical FOV, mounted on tripods at 1.4 m height
+- **Coverage**: front, back, diagonal, and side views of the participant (see camera positions below)
+
+![Experimental layout](figures/experimental_layout.png)
+
+This is the raw footage `scripts/pose_pipeline_sample_multiview.py` runs pose estimation on for `data/sample videos/`; the full released set follows the same 5-camera layout.
+
+### 2. Motion Capture (`.trc`)
 
 3D motion capture recordings in `.trc` format (304 GB total). Download from: *(link to be added)*
 
@@ -178,7 +195,7 @@ data/motion_capture/
 └── s24/
 ```
 
-- **System**: Motion Analysis Cortex v7, 14 infrared cameras, 60 Hz
+- **System**: Cortex v7.02.1815 (Motion Analysis Corp.), 14 infrared cameras, 60 Hz
 - **Markers**: 37 reflective markers (ISB placement)
 - **Coordinate system**: Origin at force plate intersection; X = mediolateral, Y = vertical, Z = anterior-posterior (mm)
 
@@ -188,25 +205,25 @@ Thirty-seven reflective markers were attached to anatomical landmarks following 
 
 | Index | Marker | Index | Marker |
 |-------|--------|-------|--------|
-| 1 | Forehead | 2–3 | Temples (R/L) |
-| 4–5 | Acromions (R/L) | 6 | C7 (base of neck) |
-| 7 | Suprasternal notch | 8 | T8 (mid-back) |
-| 9 | Xiphoid process | 10–11 | Lateral epicondyles (R/L) |
-| 12–13 | Medial epicondyles (R/L) | 14–15 | Radial styloids (R/L) |
-| 16–17 | Ulnar styloids (R/L) | 18–19 | ASIS (R/L) |
-| 20–21 | PSIS (R/L) | 22–23 | Patellae (R/L) |
-| 24–25 | Lateral tibial condyles (R/L) | 26–27 | Medial tibial condyles (R/L) |
-| 28–29 | Lateral malleoli (R/L) | 30–31 | Medial malleoli (R/L) |
-| 32–33 | Big toes (R/L) | 34–35 | Calcanei / Heels (R/L) |
-| 36–37 | Right-side identifiers | | |
+| 1 | Forehead | 2/3 | Temple (R/L) |
+| 4/5 | Acromion — shoulder points (R/L) | 6 | C7 — spinous process of the 7th cervical vertebra (base of neck) |
+| 7 | Suprasternal notch (base of throat) | 8 | T8 — spinous process of the 8th thoracic vertebra (mid-back, below shoulder blades) |
+| 9 | Xiphoid process (bottom tip of breastbone) | 10/11 | Lateral epicondyle — outer elbows (R/L) |
+| 12/13 | Medial epicondyle — inner elbows (R/L) | 14/15 | Radial styloid — wrists, thumb side (R/L) |
+| 16/17 | Ulnar styloid — wrists, pinky side (R/L) | 18/19 | ASIS — anterior superior iliac spine, front of hip bones (R/L) |
+| 20/21 | PSIS — posterior superior iliac spine, lower back dimples (R/L) | 22/23 | Patella — kneecaps (R/L) |
+| 24/25 | Lateral tibial condyle — outer upper shins (R/L) | 26/27 | Medial tibial condyle — inner upper shins (R/L) |
+| 28/29 | Lateral malleolus — outer ankle bones (R/L) | 30/31 | Medial malleolus — inner ankle bones (R/L) |
+| 32/33 | Big toe (R/L) | 34/35 | Calcaneus — heels (R/L) |
+| 36/37 | Right-side identifiers | | |
 
-Five cameras were mounted on tripods at 1.4 m height, providing 360° coverage. Motion capture was recorded simultaneously at 60 Hz. For lifting tasks (Session 4), participants lifted three box sizes between two adjacent five-level shelves (small/medium) or four-level shelves (large).
+Motion capture was recorded simultaneously with video at 60 Hz. For lifting tasks (Session 4), participants lifted three box sizes between two adjacent five-level shelves (small/medium) or four-level shelves (large).
 
 ![Lifting setup](figures/lifting_setup.png)
 
 See `scripts/visualize_mocap.py` for visualization.
 
-### 2. Vision-Based 3D Pose (`.txt`)
+### 3. Vision-Based 3D Pose (`.txt`)
 
 BlazePose 3D keypoint data in `.txt` format (3.62 GB total), organized by camera view. Download from: *(link to be added)*
 
@@ -252,7 +269,7 @@ Twenty-two key body joints were extracted per frame using Google BlazePose. The 
 
 See `scripts/visualize_pose.py` for visualization.
 
-### 3. Metadata (`data/metadata.txt`)
+### 4. Metadata (`data/metadata.txt`)
 - Trial identifiers encoding activity, camera, subject, and task parameters
 - Start/end frame indices for each trial (1-based)
 
