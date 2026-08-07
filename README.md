@@ -4,7 +4,7 @@
 
 - **35,299 trials** (~27.7 hours) from **24 participants** (12 M, 12 F)
 - **7 activities**: pushing, pulling, sitting, standing, walking, lifting, carrying
-- **4 modalities**: 360° multi-view video (5-camera setup), 3D motion capture (ground truth), vision-based 3D pose (BlazePose, 22 keypoints), metadata
+- **3 modalities**: 3D motion capture (ground truth), vision-based 3D pose (BlazePose, 22 keypoints), metadata
 
 ![Dataset overview](figures/dataset_overview.png)
 
@@ -163,18 +163,9 @@ Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_s
 
 ## Modalities
 
-### 1. Multi-View Video (`.mp4`)
+Raw multi-view video (1.24 TB, 5-camera 360° coverage — see [Experimental Setup](#experimental-setup) for the camera specs) is part of the original data collection but isn't distributed as its own downloadable component; the 3 modalities below are.
 
-Original 360°-coverage video in `.mp4` format (1.24 TB total). Not offered as a bulk download given its size.
-
-- **Cameras**: 5 × GoPro Hero8 Black, 1920×1080, 60 Hz, 122.6° horizontal / 94.4° vertical FOV, mounted on tripods at 1.4 m height
-- **Coverage**: front, back, diagonal, and side views of the participant (see camera positions below)
-
-![Experimental layout](figures/experimental_layout.png)
-
-This is the raw footage `scripts/pose_pipeline_sample_multiview.py` runs pose estimation on for `data/sample videos/`; the full released set follows the same 5-camera layout.
-
-### 2. Motion Capture (`.trc`)
+### 1. Motion Capture (`.trc`)
 
 3D motion capture recordings in `.trc` format (304 GB total). Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)).
 
@@ -221,7 +212,7 @@ Motion capture was recorded simultaneously with video at 60 Hz. For lifting task
 
 See `scripts/visualize_mocap.py` for visualization.
 
-### 3. Vision-Based 3D Pose (`.txt`)
+### 2. Vision-Based 3D Pose (`.txt`)
 
 BlazePose 3D keypoint data in `.txt` format (3.62 GB total), organized by camera view. Download from: *(link to be added)*
 
@@ -284,7 +275,7 @@ The preprocessor doesn't treat one annotated repetition as one contiguous block.
 
 See `scripts/visualize_pose.py` for visualization.
 
-### 4. Metadata (`data/metadata.txt`)
+### 3. Metadata (`data/metadata.txt`)
 - Trial identifiers encoding activity, camera, subject, and task parameters
 - Start/end frame indices for each trial (1-based)
 
