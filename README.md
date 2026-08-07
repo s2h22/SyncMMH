@@ -245,7 +245,7 @@ data/pose/
 - **Per row**: 66 values = 22 keypoints × 3 (X, Y, Z in meters)
 - **Shape after loading**: `(n_frames, 22, 3)`
 - **Coordinate system**: Origin at hip midpoint; X = mediolateral, Y = vertical, Z = anterior-posterior (m)
-- **Preprocessing**: Zero-phase 5th-order Butterworth low-pass filter at 5 Hz
+- **Preprocessing**: Zero-phase 5th-order Butterworth low-pass filter at 3 Hz
 
 ![BlazePose 22 keypoints](figures/blazepose_keypoints.png)
 
