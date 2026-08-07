@@ -73,8 +73,7 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 
 | Component | Size | Format | Host |
 |---|---|---|---|
-| Original videos (5-camera) | 1.24 TB | `.mp4` | *(link to be added)* |
-| Motion capture | 304 GB | `.trc` | *(link to be added)* |
+| Motion capture | 304 GB | `.trc` | Available upon request |
 | Pose (all cameras) | 3.62 GB | `.txt` | *(link to be added)* |
 | Metadata | 559 KB | `.txt` | Included in this repo |
 
@@ -166,7 +165,7 @@ Multiview clips generated end-to-end from raw video via `scripts/pose_pipeline_s
 
 ### 1. Multi-View Video (`.mp4`)
 
-Original 360°-coverage video in `.mp4` format (1.24 TB total). Download from: *(link to be added)*
+Original 360°-coverage video in `.mp4` format (1.24 TB total). Not offered as a bulk download given its size.
 
 - **Cameras**: 5 × GoPro Hero8 Black, 1920×1080, 60 Hz, 122.6° horizontal / 94.4° vertical FOV, mounted on tripods at 1.4 m height
 - **Coverage**: front, back, diagonal, and side views of the participant (see camera positions below)
@@ -177,7 +176,7 @@ This is the raw footage `scripts/pose_pipeline_sample_multiview.py` runs pose es
 
 ### 2. Motion Capture (`.trc`)
 
-3D motion capture recordings in `.trc` format (304 GB total). Download from: *(link to be added)*
+3D motion capture recordings in `.trc` format (304 GB total). Available upon request.
 
 After downloading, create a `data/motion_capture/` folder and place files so the structure looks like:
 
@@ -271,6 +270,13 @@ See `scripts/visualize_pose.py` for visualization.
 ### 4. Metadata (`data/metadata.txt`)
 - Trial identifiers encoding activity, camera, subject, and task parameters
 - Start/end frame indices for each trial (1-based)
+
+---
+
+## To Do
+
+- [ ] Re-run pose estimation with the heavy BlazePose model (`pose_landmarker_heavy.task`)
+- [ ] Release the cross-camera pose synchronization code
 
 ---
 
