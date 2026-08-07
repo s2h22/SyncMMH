@@ -53,8 +53,14 @@ SyncMMH/
 │   ├── dataset_summary.py       # trial/frame counts by activity, camera, subject
 │   ├── visualize_mocap.py       # 3D animated skeleton from motion capture
 │   └── visualize_pose.py        # 2D multiview skeleton from pre-processed BlazePose keypoints
-├── visualization/                # generated multiview clips (see Visualization section)
-├── examples/                    # Jupyter notebooks (coming soon)
+├── visualization/                # generated multiview clips (see Gallery section)
+│   ├── push_multiview.gif
+│   ├── pull_multiview.gif
+│   ├── sit_multiview.gif
+│   ├── stand_multiview.gif
+│   ├── walk_multiview.gif
+│   ├── lift_multiview.gif
+│   └── carry_multiview.gif
 ├── LICENSE                      # CC BY 4.0
 └── README.md
 ```

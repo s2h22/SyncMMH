@@ -17,3 +17,6 @@ data/
 # Scripts (internal/reference pipeline scripts, not part of the public release)
 scripts/*
 !scripts/dataset_summary.py
+
+# Full-quality multiview mp4s (GIFs in visualization/ are the tracked previews)
+visualization/*.mp4
