@@ -6,8 +6,6 @@
 - **7 activities**: pushing, pulling, sitting, standing, walking, lifting, carrying
 - **3 modalities**: 3D motion capture (ground truth), BlazePose 3D pose (22 keypoints, 5 views), metadata
 
-> Paper: *SyncMMH: A Multimodal Dataset of Full-Body Motion in Manual Material Handling Tasks Integrating Motion Capture and Vision-Based Pose Estimation* — Jung & Xu (2026)
-
 ![Dataset overview](figures/dataset_overview.png)
 
 ---
