@@ -32,13 +32,13 @@ Breakdown below generated with `scripts/dataset_summary.py` (excludes subject `s
 | c4 | 6,249 (17.70%) | 1,093,355 (18.33%) | 305.02 (18.33%) |
 | c5 | 7,024 (19.90%) | 1,136,834 (19.06%) | 317.01 (19.05%) |
 
-Lifting dominates the trial count because each lift/carry repetition (a single pick-up-and-place motion) is logged as its own trial, while push/pull/sit/stand/walk trials span a longer continuous action.
+Lifting dominates the trial count because each lift/carry trial is a single pick-up-and-place motion, while push/pull/sit/stand/walk trials span a longer continuous action.
 
 ---
 
 ## Gallery
 
-Multiview clips: all 5 camera views of the same repetition, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
+Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
 
 **Push** — `s25-gf`
 ![push multiview](visualization/push_multiview.gif)
@@ -152,7 +152,7 @@ The activity and experimental conditions for each trial are encoded into a **tri
 | Walk | `[relation][view]` | `relation`: `gc`/`gf` as above. `view`: `cv` (close-up view, cameras repositioned 2 m from the path center for the second half of the walking trials) or `rv` (regular view, default camera positions) |
 | Lift / Carry | `[size][direction][location][state]` | `size`: `s` (small), `m` (medium), `l` (large). `direction`: `r2l` (right-to-left) or `l2r` (left-to-right). `location`: `a` (adjacent shelves) or `d` (distant shelves). `state`: `f` (fixed cameras) or `m` (moving cameras) |
 
-Immediately below each trial identifier, one or more `start_frame/end_frame` lines (1-based) mark the trial's extent. Lifting and carrying trials involve multiple repetitions per recording, so their identifiers are followed by multiple frame-index lines; every other activity is a single trial with just one line.
+Immediately below each trial identifier, one or more `start_frame/end_frame` lines (1-based) mark each trial's extent. Lifting and carrying tasks involve multiple trials per recording, so their identifiers are followed by multiple frame-index lines; every other task consists of a single trial with just one line.
 
 ---
 
