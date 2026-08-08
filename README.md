@@ -112,7 +112,7 @@ Raw multi-view video (1.24 TB, 5-camera 360° coverage — see [Experimental Set
 3D motion capture data (304 GB total, `.trc` and Cortex-associated files). Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)).
 
 - **System**: Cortex v7.02.1815 (Motion Analysis Corp.), 14 infrared cameras, 60 Hz
-- **Markers**: 37 reflective markers (ISB placement)
+- **Markers**: 37 reflective markers (ISB placement; [Wu et al., 2002](https://doi.org/10.1016/S0021-9290(01)00222-6), [2005](https://doi.org/10.1016/j.jbiomech.2004.05.042))
 - **Coordinate system**: Origin at force plate intersection; X = mediolateral, Y = vertical, Z = anterior-posterior (mm)
 
 ![Marker placement](figures/mocap_marker_placement.png)
