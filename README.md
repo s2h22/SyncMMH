@@ -8,13 +8,13 @@
 
 ![Dataset overview](figures/dataset_overview.png)
 
-Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants); **5,965,230 frames** total. Lifting dominates the trial count because each lift/carry trial is a single pick-up-and-place motion, while push/pull/sit/stand/walk trials span a longer continuous action.
+Generated with `scripts/dataset_summary.py` (excludes subject `s1`, a pilot participant not part of the 24 released participants); **5,965,230 frames** total. Lifting dominates the trial count because each lift/carry trial is a single pick-up-and-place motion, while push/pull/sit/stand/walk trials span a longer continuous action.
 
 ---
 
 ## Gallery
 
-Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Each clip below is captioned with its trial identifier (subject `s25`); see [File Naming Convention](#file-naming-convention) for what each field means.
+Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Each clip below is captioned with its trial identifier (subject `s25` and task parameters); see [File Naming Convention](#file-naming-convention) for what each task parameter means.
 
 **Push** — `s25-gf`
 ![push multiview](visualization/push_multiview.gif)
@@ -87,7 +87,7 @@ The activity and experimental conditions for each trial are encoded into a **tri
 |---|---|
 | `activity` | `push`, `pull`, `sit`, `stand`, `walk`, `lift`, `carry` |
 | `camera` | `c1`–`c5` |
-| `subject` | `s1`–`s25` |
+| `subject` | `s2`–`s25` |
 | `filename` | GoPro video filename (e.g., `GH010014`) |
 
 **`task parameters`** — the tag's structure depends on the activity:
