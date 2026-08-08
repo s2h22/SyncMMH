@@ -8,37 +8,13 @@
 
 ![Dataset overview](figures/dataset_overview.png)
 
-Breakdown below generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants); **5,965,230 frames** total.
-
-**By activity**
-
-| Activity | Trials | Frames | Duration (min) |
-|---|---:|---:|---:|
-| Push | 923 (2.61%) | 309,749 (5.19%) | 86.65 (5.21%) |
-| Pull | 899 (2.55%) | 386,376 (6.48%) | 108.16 (6.50%) |
-| Sit | 424 (1.20%) | 378,817 (6.35%) | 106.17 (6.38%) |
-| Stand | 420 (1.19%) | 377,558 (6.33%) | 105.82 (6.36%) |
-| Walk | 2,950 (8.36%) | 753,706 (12.63%) | 210.65 (12.66%) |
-| Lift | 27,632 (78.28%) | 3,297,700 (55.28%) | 917.53 (55.15%) |
-| Carry | 2,051 (5.81%) | 461,324 (7.73%) | 128.86 (7.74%) |
-
-**By camera**
-
-| Camera | Trials | Frames | Duration (min) |
-|---|---:|---:|---:|
-| c1 | 7,499 (21.24%) | 1,249,279 (20.94%) | 348.42 (20.94%) |
-| c2 | 7,196 (20.39%) | 1,233,744 (20.68%) | 344.15 (20.68%) |
-| c3 | 7,331 (20.77%) | 1,252,018 (20.99%) | 349.24 (20.99%) |
-| c4 | 6,249 (17.70%) | 1,093,355 (18.33%) | 305.02 (18.33%) |
-| c5 | 7,024 (19.90%) | 1,136,834 (19.06%) | 317.01 (19.05%) |
-
-Lifting dominates the trial count because each lift/carry trial is a single pick-up-and-place motion, while push/pull/sit/stand/walk trials span a longer continuous action.
+Generated with `scripts/dataset_summary.py` (excludes subject `s1`, not part of the 24 released participants); **5,965,230 frames** total. Lifting dominates the trial count because each lift/carry trial is a single pick-up-and-place motion, while push/pull/sit/stand/walk trials span a longer continuous action.
 
 ---
 
 ## Gallery
 
-Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Example identifiers below use subject `s25`; see [File Naming Convention](#file-naming-convention) for what each field means.
+Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Each clip below is captioned with its trial identifier (subject `s25`); see [File Naming Convention](#file-naming-convention) for what each field means.
 
 **Push** — `s25-gf`
 ![push multiview](visualization/push_multiview.gif)
@@ -71,7 +47,7 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 |---|---|---|---|---|
 | Motion capture | 304 GB | `.trc` + Cortex-associated files | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) | `.trc` (coordinate data) plus Cortex auxiliary files (`.add`, `.cap`, `.trb`) and mocap camera video (`.avi`) |
 | Pose (all cameras) | 1.80 GB (zipped) | `.txt` | [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing) | 4 files after unzipping: `raw_poses_3d_normalized.txt` (1.76 GB), `raw_poses_3d_world.txt` (1.85 GB), `pre_processed_poses_3d_normalized.txt` (1.82 GB), `pre_processed_poses_3d_world.txt` (1.91 GB) |
-| Metadata | 559 KB | `.txt` | Included in this repo | |
+| Metadata | 559 KB | `.txt` | Included in this repo (`data/metadata.txt`) | |
 
 ---
 
