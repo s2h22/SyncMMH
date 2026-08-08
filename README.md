@@ -70,8 +70,8 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 | Component | Size | Format | Host | Remark |
 |---|---|---|---|---|
 | Motion capture | 304 GB | `.trc` + Cortex-associated files | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) | `.trc` (coordinate data) plus Cortex auxiliary files (`.add`, `.cap`, `.trb`) and mocap camera video (`.avi`) |
-| Pose (all cameras) | 1.81 GB (zipped) | `.txt` | [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing) | 4 files after unzipping: `raw_poses_3d_normalized.txt` (1.83 GB), `raw_poses_3d_world.txt` (1.92 GB), `pre_processed_poses_3d_normalized.txt` (1.77 GB), `pre_processed_poses_3d_world.txt` (1.86 GB) |
-| Metadata | 511 KB | `.txt` | Included in this repo | |
+| Pose (all cameras) | 1.80 GB (zipped) | `.txt` | [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing) | 4 files after unzipping: `raw_poses_3d_normalized.txt` (1.76 GB), `raw_poses_3d_world.txt` (1.85 GB), `pre_processed_poses_3d_normalized.txt` (1.82 GB), `pre_processed_poses_3d_world.txt` (1.91 GB) |
+| Metadata | 559 KB | `.txt` | Included in this repo | |
 
 ---
 
@@ -163,7 +163,7 @@ Motion capture was recorded simultaneously with video at 60 Hz. For lifting task
 
 ### 2. Vision-Based 3D Pose (`.txt`)
 
-BlazePose 3D keypoint data, covering all 5 camera views (1.81 GB zipped). Download from [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing).
+BlazePose 3D keypoint data, covering all 5 camera views (1.80 GB zipped). Download from [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing).
 
 After downloading, unzip directly into `data/` so the structure looks like:
 
