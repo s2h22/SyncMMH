@@ -67,11 +67,11 @@ Multiview clips: all 5 camera views of the same trial, synchronized and arranged
 
 The large data files are hosted externally. See the [Modalities](#modalities) section below for download links and the folder structure to use after downloading.
 
-| Component | Size | Format | Host |
-|---|---|---|---|
-| Motion capture | 304 GB | `.trc` | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) |
-| Pose (all cameras) | 3.62 GB | `.txt` | *(link to be added)* |
-| Metadata | 559 KB | `.txt` | Included in this repo |
+| Component | Size | Format | Host | Remark |
+|---|---|---|---|---|
+| Motion capture | 304 GB | `.trc` + Cortex-associated files | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) | 304 GB is the full export, not just `.trc`: `.trc` holds the actual 3D coordinate data, while `.add`/`.cap`/`.trb` are Cortex's own auxiliary files (required for Cortex to load the `.trc` correctly) and `.avi` is the mocap system's own camera video |
+| Pose (all cameras) | 1.81 GB (zipped) | `.txt` | [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing) | 4 files after unzipping: `raw_poses_3d_normalized.txt` (1.83 GB), `raw_poses_3d_world.txt` (1.92 GB), `pre_processed_poses_3d_normalized.txt` (1.77 GB), `pre_processed_poses_3d_world.txt` (1.86 GB) |
+| Metadata | 559 KB | `.txt` | Included in this repo | |
 
 ---
 
@@ -133,22 +133,7 @@ Raw multi-view video (1.24 TB, 5-camera 360° coverage — see [Experimental Set
 
 ### 1. Motion Capture (`.trc`)
 
-3D motion capture recordings in `.trc` format (304 GB total). Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)).
-
-After downloading, create a `data/motion_capture/` folder and place files so the structure looks like:
-
-```
-data/motion_capture/
-├── s01/
-│   ├── session1_push_pull.trc
-│   ├── session2_sit_stand.trc
-│   ├── session3_walk.trc
-│   ├── session4_lift.trc
-│   └── session5_carry.trc
-├── s02/
-└── ...
-└── s24/
-```
+3D motion capture data (304 GB total, `.trc` and Cortex-associated files). Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)).
 
 - **System**: Cortex v7.02.1815 (Motion Analysis Corp.), 14 infrared cameras, 60 Hz
 - **Markers**: 37 reflective markers (ISB placement)
@@ -178,29 +163,24 @@ Motion capture was recorded simultaneously with video at 60 Hz. For lifting task
 
 ### 2. Vision-Based 3D Pose (`.txt`)
 
-BlazePose 3D keypoint data in `.txt` format (3.62 GB total), organized by camera view. Download from: *(link to be added)*
+BlazePose 3D keypoint data, covering all 5 camera views (1.81 GB zipped). Download from [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing).
 
-After downloading, create a `data/pose/` folder and place files so the structure looks like:
+After downloading, unzip directly into `data/` so the structure looks like:
 
 ```
-data/pose/
-├── c1/                  # Camera 1: 0° / 180°
-│   ├── s01/
-│   │   ├── <recording>.txt
-│   │   └── ...
-│   └── ...
-├── c2/                  # Camera 2: 45° / 225°
-├── c3/                  # Camera 3: 90° / 270°
-├── c4/                  # Camera 4: 270° / 90°
-└── c5/                  # Camera 5: 315° / 135°
+data/
+├── raw_poses_3d_normalized.txt
+├── raw_poses_3d_world.txt
+├── pre_processed_poses_3d_normalized.txt
+└── pre_processed_poses_3d_world.txt
 ```
 
 - **Model**: Google BlazePose (22 keypoints)
-- **Cameras**: 5 × GoPro Hero8 Black, 1920×1080, 60 Hz, 360° coverage
-- **Per row**: 66 values = 22 keypoints × 3 (X, Y, Z in meters)
+- **Cameras**: 5 × GoPro Hero8 Black, 1920×1080, 60 Hz, 360° coverage — all 5 views are combined into each file; which camera a block of frames came from is encoded in that block's trial identifier (see [File Naming Convention](#file-naming-convention))
+- **Per row**: 66 values = 22 keypoints × 3 (X, Y, Z)
 - **Shape after loading**: `(n_frames, 22, 3)`
-- **Coordinate system**: Origin at hip midpoint; X = mediolateral, Y = vertical, Z = anterior-posterior (m)
-- **Preprocessing**: Zero-phase 5th-order Butterworth low-pass filter at 3 Hz
+- **Coordinate system**: Origin at hip midpoint; X = mediolateral, Y = vertical, Z = anterior-posterior (m for `_world`, image-space for `_normalized` — see below)
+- **`raw_` vs `pre_processed_`**: `raw_` is the direct BlazePose output; `pre_processed_` has a zero-phase 5th-order Butterworth low-pass filter applied at 3 Hz
 
 ![BlazePose 22 keypoints](figures/blazepose_keypoints.png)
 
@@ -239,6 +219,12 @@ Both use the same hip-midpoint origin and 22-keypoint topology above; only the u
 
 - [ ] Re-run pose estimation with the heavy BlazePose model (`pose_landmarker_heavy.task`)
 - [ ] Release the cross-camera pose synchronization code
+
+---
+
+## Disclaimer
+
+Both the motion capture and pose data have gone through quality checks, but some incorrect values may still remain — please use the data with appropriate discretion. The authors will continue identifying and fixing such issues, and will keep this dataset updated accordingly.
 
 ---
 
