@@ -69,7 +69,7 @@ The large data files are hosted externally. See the [Modalities](#modalities) se
 
 | Component | Size | Format | Host | Remark |
 |---|---|---|---|---|
-| Motion capture | 304 GB | `.trc` + Cortex-associated files | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) | 304 GB is the full export, not just `.trc`: `.trc` holds the actual 3D coordinate data, while `.add`/`.cap`/`.trb` are Cortex's own auxiliary files (required for Cortex to load the `.trc` correctly) and `.avi` is the mocap system's own camera video |
+| Motion capture | 304 GB | `.trc` + Cortex-associated files | Available upon request — contact the first author ([apps.ehee@gmail.com](mailto:apps.ehee@gmail.com)) | `.trc` (coordinate data) plus Cortex auxiliary files (`.add`, `.cap`, `.trb`) and mocap camera video (`.avi`) |
 | Pose (all cameras) | 1.81 GB (zipped) | `.txt` | [Google Drive](https://drive.google.com/file/d/1zpLqrGyzlRVKZg8QC4l3IDiTPQ7q8J5y/view?usp=sharing) | 4 files after unzipping: `raw_poses_3d_normalized.txt` (1.83 GB), `raw_poses_3d_world.txt` (1.92 GB), `pre_processed_poses_3d_normalized.txt` (1.77 GB), `pre_processed_poses_3d_world.txt` (1.86 GB) |
 | Metadata | 559 KB | `.txt` | Included in this repo | |
 
