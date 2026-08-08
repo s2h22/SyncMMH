@@ -105,7 +105,7 @@ Immediately below each trial identifier, one or more `start_frame/end_frame` lin
 
 ## Modalities
 
-Raw multi-view video (1.24 TB, 5-camera 360° coverage — see [Experimental Setup](#experimental-setup) for the camera specs) is part of the original data collection but isn't distributed as its own downloadable component; the 3 modalities below are.
+Raw multi-view video (1.24 TB, 5-camera 360° coverage — see [Experimental Setup](#experimental-setup) for the camera specs) is part of the original data collection but isn't distributed as its own downloadable component, since participants are identifiable in it; the 3 modalities below are.
 
 ### 1. Motion Capture (`.trc`)
 
