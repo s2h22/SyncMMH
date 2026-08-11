@@ -29,7 +29,7 @@ Multiview clips: all 5 camera views of the same trial, synchronized and arranged
 ![stand multiview](visualization/stand_multiview.gif)
 
 **Walk** — `s25-gfrv`
-![walk multiview](visualization/walk_multiview.gif)
+![walk combined](visualization/walk_combined.gif)
 
 **Lift** — `s25-sr2laf`
 ![lift multiview](visualization/lift_multiview.gif)
