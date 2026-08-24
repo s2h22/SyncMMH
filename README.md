@@ -14,19 +14,19 @@ Generated with `scripts/dataset_summary.py` (excludes subject `s1`, a pilot part
 
 ## Gallery
 
-Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Each clip below is captioned with its trial identifier (subject `s25` and task parameters); see [File Naming Convention](#file-naming-convention) for what each task parameter means.
+Multiview clips: all 5 camera views of the same trial, synchronized and arranged side by side in `c4, c5, c1, c2, c3` order. Combined clips additionally prepend a rendered 3D motion-capture panel. Each clip below is captioned with its trial identifier (subject `s25` and task parameters); see [File Naming Convention](#file-naming-convention) for what each task parameter means.
 
 **Push** — `s25-gf`
-![push multiview](visualization/push_multiview.gif)
+![push combined](visualization/push_combined.gif)
 
 **Pull** — `s25-gc`
-![pull multiview](visualization/pull_multiview.gif)
+![pull combined](visualization/pull_combined.gif)
 
 **Sit** — `s25-na`
-![sit multiview](visualization/sit_multiview.gif)
+![sit combined](visualization/sit_combined.gif)
 
 **Stand** — `s25-na`
-![stand multiview](visualization/stand_multiview.gif)
+![stand combined](visualization/stand_combined.gif)
 
 **Walk** — `s25-gfrv`
 ![walk combined](visualization/walk_combined.gif)
