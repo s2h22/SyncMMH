@@ -35,7 +35,7 @@ Multiview clips: all 5 camera views of the same trial, synchronized and arranged
 ![lift combined](visualization/lift_combined.gif)
 
 **Carry** — `s25-lr2ldf`
-![carry multiview](visualization/carry_multiview.gif)
+![carry combined](visualization/carry_combined.gif)
 
 ---
 
