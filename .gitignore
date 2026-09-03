@@ -22,5 +22,10 @@ scripts/*
 # Full-quality multiview mp4s (GIFs in visualization/ are the tracked previews)
 visualization/*.mp4
 
+# Per-activity mocap-only and multiview-only previews -- combined.gif is the only preview
+# tracked per activity going forward
+visualization/*_mocap.gif
+visualization/*_multiview.gif
+
 # Paper draft (not part of the public code/data release)
 *.pdf
