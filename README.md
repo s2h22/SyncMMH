@@ -213,7 +213,7 @@ If you use SyncMMH in your research, please cite:
 @article{jung2026syncmmh,
   title   = {SyncMMH: A Multimodal Dataset of Full-Body Motion in Manual Material
              Handling Tasks Integrating Motion Capture and Vision-Based Pose Estimation},
-  author  = {Jung, Sehee and Xu, Xu},
+  author  = {Jung, Sehee},
   journal = {[journal to be added]},
   year    = {2026}
 }
