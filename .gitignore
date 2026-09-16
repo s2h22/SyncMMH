@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+
+# Data (large/local files, downloaded separately -- see README)
+data/*
+!data/metadata.txt
+
+# Scripts (internal/reference pipeline scripts, not part of the public release)
+scripts/*
+!scripts/dataset_summary.py
+
+# Full-quality multiview mp4s (GIFs in visualization/ are the tracked previews)
+visualization/*.mp4
+
+# Per-activity mocap-only and multiview-only previews -- combined.gif is the only preview
+# tracked per activity going forward
+visualization/*_mocap.gif
+visualization/*_multiview.gif
+
+# Paper draft (not part of the public code/data release)
+*.pdf
