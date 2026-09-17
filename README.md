@@ -192,12 +192,14 @@ Both use the same hip-midpoint origin and 22-keypoint topology above; only the u
 
 ---
 
+<!--
 ## To Do
 
 - [ ] Re-run pose estimation with the heavy BlazePose model for more accurate pose data
 - [ ] Release the cross-camera pose synchronization code
 
 ---
+-->
 
 ## Disclaimer
 
