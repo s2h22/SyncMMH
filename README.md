@@ -194,7 +194,7 @@ Both use the same hip-midpoint origin and 22-keypoint topology above; only the u
 
 ## To Do
 
-- [ ] Re-run pose estimation with the heavy BlazePose model for more accurate pose data
+- [ ] Re-run BlazePose with the heavy model
 - [ ] Add pose data from ViTPose++
 - [ ] Add pose data from Sapiens
 
