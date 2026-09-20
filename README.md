@@ -195,9 +195,8 @@ Both use the same hip-midpoint origin and 22-keypoint topology above; only the u
 ## To Do
 
 - [ ] Re-run pose estimation with the heavy BlazePose model for more accurate pose data
-- [ ] Apply state-of-the-art pose estimation models (e.g., ViTPose++, Sapiens) to the same
-      recordings and release their outputs as additional versions of the pose data
-- [ ] Release the cross-camera pose synchronization code
+- [ ] Add pose data from ViTPose++
+- [ ] Add pose data from Sapiens
 
 ---
 
